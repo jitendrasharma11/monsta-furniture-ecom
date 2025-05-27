@@ -1,0 +1,15 @@
+let express = require("express");
+
+const { colorInsert, colorView, colorDelete, updateColor, singlecolorView, colormultiDelete } = require("../../controllers/admin/colorControllers");
+let colorRoutes = express.Router();
+
+colorRoutes.post("/insert", colorInsert)
+
+colorRoutes.get("/view", colorView)
+colorRoutes.get("/view/:id",singlecolorView)
+colorRoutes.delete("/delete/:id", colorDelete)
+colorRoutes.post("/delete", colormultiDelete)
+// colorRoutes.post("/multi-delete/",colormultiDelete)
+colorRoutes.put("/update/:id",updateColor)
+
+module.exports = { colorRoutes }
