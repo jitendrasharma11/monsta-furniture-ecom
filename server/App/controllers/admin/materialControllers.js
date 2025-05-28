@@ -87,7 +87,7 @@ let changeStatus = async (req, res) => {
 
 let updatematerial = async (req, res) => {
     let { id } = req.params;
-    let { materialName, materialCode, materialStatus, materialOrder } = req.body
+    let { materialName, materialOrder } = req.body
 
     let updObj = {
         materialName,
@@ -98,7 +98,7 @@ let updatematerial = async (req, res) => {
 
     let obj = {
         status: 1,
-        mgs: "material Updated",
+        msg: "Material Updated",
         updRes
 
     }

@@ -14,4 +14,8 @@ faqRoutes.delete("/delete/:id", faqDelete)
 
 faqRoutes.post("/delete", faqMultipleDelete)
 
+faqRoutes.get("/edit-row-data/:id", faqSingleView)
+
+faqRoutes.put("/update/:id", faqUpdate)
+
 module.exports = { faqRoutes }

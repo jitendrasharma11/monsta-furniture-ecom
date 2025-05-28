@@ -8,6 +8,7 @@ let countryRoutes = express.Router()
 countryRoutes.post("/add", countryAdd)
 
 countryRoutes.get("/view", countryView)
+
 countryRoutes.get("/view/:id", CountrySingleView)
 
 countryRoutes.put("/update/:id", countryUpdate)
@@ -17,5 +18,7 @@ countryRoutes.delete("/delete/:id", countryDelete)
 countryRoutes.post("/delete", countryMultiDelete)
 
 countryRoutes.delete("/multi-delete", countryMultiDelete)
+
+countryRoutes.get("/edit-row-data//:id", CountrySingleView)
 
 module.exports = { countryRoutes }

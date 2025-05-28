@@ -11,5 +11,6 @@ colorRoutes.delete("/delete/:id", colorDelete)
 colorRoutes.post("/delete", colormultiDelete)
 // colorRoutes.post("/multi-delete/",colormultiDelete)
 colorRoutes.put("/update/:id",updateColor)
+colorRoutes.get("/edit-row-data/:id",singlecolorView)
 
 module.exports = { colorRoutes }
