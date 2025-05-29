@@ -1,5 +1,5 @@
 let express = require("express")
-const { countryAdd, countryUpdate, CountrySingleView, countryDelete, countryMultiDelete, countryView } = require("../../controllers/admin/countryController")
+const { countryAdd, countryUpdate, CountrySingleView, countryDelete, countryMultiDelete, countryView, changeStatus } = require("../../controllers/admin/countryController")
 
 
 let countryRoutes = express.Router()
@@ -19,6 +19,8 @@ countryRoutes.post("/delete", countryMultiDelete)
 
 countryRoutes.delete("/multi-delete", countryMultiDelete)
 
-countryRoutes.get("/edit-row-data//:id", CountrySingleView)
+countryRoutes.get("/edit-row-data/:id", CountrySingleView)
+
+countryRoutes.post("/change-status",changeStatus)
 
 module.exports = { countryRoutes }

@@ -81,7 +81,24 @@ let faqUpdate = async (req, res) => {
     res.send(obj)
 
 }
+let changeStatus = async (req, res) => {
+    let { ids } = req.body;
 
+    let allfaq = await faqModels.find({ _id: ids }).select('faqStatus')
+     
+    for (let items of allfaq) {
+        await faqModels.updateOne({ _id: items._id }, { $set: { faqStatus: !items.faqStatus } })
+    }
+
+    let obj = {
+        status: 1,
+        mgs: "Status Change",
+
+    }
+    res.send(obj)
+
+
+}
 let faqDelete = async (req, res) => {
     let { id } = req.params
 
@@ -108,4 +125,4 @@ let faqMultipleDelete = async (req, res) => {
     res.send(obj)
 }
 
-module.exports = { faqAdd, faqView, faqSingleView, faqUpdate, faqDelete, faqMultipleDelete }
+module.exports = { faqAdd, faqView, changeStatus, faqSingleView, faqUpdate, faqDelete, faqMultipleDelete }

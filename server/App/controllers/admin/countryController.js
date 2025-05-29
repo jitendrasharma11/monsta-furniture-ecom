@@ -1,6 +1,7 @@
 const { countryModel } = require("../../models/countryModel")
 
 
+
 let countryAdd = async (req, res) => {
     let { countryName, countryOrder } = req.body
 
@@ -67,17 +68,36 @@ let countryUpdate = async (req, res) => {
         countryName,
         countryOrder,
     }
-
     let data = await countryModel.updateOne({ _id: id }, { $set: countryUpdate })
+
 
     let obj = {
         status: 1,
         msg: "Updated Country Data",
         data
     }
+    
 
     res.send(obj)
 
+
+
+}
+let changeStatus = async (req, res) => {
+    let { ids } = req.body;
+
+    let allcountry = await countryModel.find({ _id: ids }).select('countryStatus')
+
+    for (let items of allcountry) {
+        await countryModel.updateOne({ _id: items._id }, { $set: { countryStatus: !items.countryStatus } })
+    }
+
+    let obj = {
+        status: 1,
+        mgs: "Status Change",
+
+    }
+    res.send(obj)
 
 
 }
@@ -105,4 +125,4 @@ let countryMultiDelete = async (req, res) => {
     }
     res.send(obj)
 }
-module.exports = { countryAdd, countryView, CountrySingleView, countryUpdate, countryDelete, countryMultiDelete }
+module.exports = { countryAdd, countryView, CountrySingleView, changeStatus ,countryUpdate, countryDelete, countryMultiDelete }

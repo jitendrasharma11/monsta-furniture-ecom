@@ -1,5 +1,5 @@
 let express=require("express")
-const { faqAdd, faqView, faqSingleView, faqUpdate, faqDelete, faqMultipleDelete } = require("../../controllers/admin/faqController")
+const { faqAdd, faqView, faqSingleView, faqUpdate, faqDelete, faqMultipleDelete, changeStatus } = require("../../controllers/admin/faqController")
 
 let faqRoutes = express.Router()
 
@@ -17,5 +17,7 @@ faqRoutes.post("/delete", faqMultipleDelete)
 faqRoutes.get("/edit-row-data/:id", faqSingleView)
 
 faqRoutes.put("/update/:id", faqUpdate)
+
+faqRoutes.post("/change-status",changeStatus)
 
 module.exports = { faqRoutes }

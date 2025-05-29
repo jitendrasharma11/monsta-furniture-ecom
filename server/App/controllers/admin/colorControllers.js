@@ -76,7 +76,24 @@ let updateColor = async (req, res) => {
     }
     res.send(obj)
 }
+let changeStatus = async (req, res) => {
+    let { ids } = req.body;
 
+    let allcolor = await colorModel.find({ _id: ids }).select('colorStatus')
+
+    for (let items of allcolor) {
+        await colorModel.updateOne({ _id: items._id }, { $set: { colorStatus: !items.colorStatus } })
+    }
+
+    let obj = {
+        status: 1,
+        mgs: "Status Change",
+
+    }
+    res.send(obj)
+
+
+}
 let singlecolorView = async (req, res) => {
     let {id} =req.params
     let data = await colorModel.findOne({_id:id})
@@ -89,4 +106,4 @@ let singlecolorView = async (req, res) => {
 
 }
 
-module.exports = { colorInsert, colorView, colorDelete, colormultiDelete, updateColor, singlecolorView }
+module.exports = { colorInsert, colorView, colorDelete, colormultiDelete, changeStatus , updateColor, singlecolorView }
